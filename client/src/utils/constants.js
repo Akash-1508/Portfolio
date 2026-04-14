@@ -13,7 +13,11 @@ export const SITE_CONFIG = {
   contactPhone: "6280484227",
   contactLocation: "Himachal Pradesh, India",
 
-  contactApiUrl: import.meta.env.VITE_CONTACT_API_URL || "",
+  contactApiUrl:
+    import.meta.env.VITE_CONTACT_API_URL ||
+    (import.meta.env.VITE_BACKEND_URL
+      ? `${String(import.meta.env.VITE_BACKEND_URL).replace(/\/$/, "")}/api/contact`
+      : "/api/contact"),
 
   socialLinks: {
     github: "https://github.com/Akash-1508",

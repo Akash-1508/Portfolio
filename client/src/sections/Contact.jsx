@@ -10,7 +10,7 @@ import { useApp } from "../context/AppContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const initial = { name: "", email: "", message: "" };
+const initial = { name: "", email: "", phone: "", message: "" };
 
 export default function Contact() {
   const { site } = useApp();
@@ -62,6 +62,7 @@ export default function Contact() {
         body: JSON.stringify({
           name: form.name.trim(),
           email: form.email.trim(),
+          phone: form.phone.trim(),
           message: form.message.trim(),
         }),
       });
@@ -171,6 +172,23 @@ export default function Contact() {
                   whileFocus={{ scale: 1.01 }}
                   className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-elevated)]/70 px-4 py-3 font-secondary text-[var(--color-text-primary)] outline-none transition focus:border-[var(--color-accent)]/60"
                   autoComplete="email"
+                />
+              </label>
+              <label className="grid gap-2">
+                <span className="font-secondary text-xs font-bold uppercase tracking-wider text-[var(--color-text-secondary)]">
+                  Mobile number
+                </span>
+                <motion.input
+                  required
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={onChange}
+                  whileFocus={{ scale: 1.01 }}
+                  className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-elevated)]/70 px-4 py-3 font-secondary text-[var(--color-text-primary)] outline-none transition focus:border-[var(--color-accent)]/60"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  placeholder="e.g. 9876543210"
                 />
               </label>
               <label className="grid gap-2">

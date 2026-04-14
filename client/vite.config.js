@@ -40,4 +40,17 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+     
+      "/api/contact": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+      },
+      "/health": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+      },
+    },
+  },
 });
