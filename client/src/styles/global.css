@@ -1,0 +1,242 @@
+/* Scan project root so all JSX + index.html are included (Tailwind v4).
+   Path is relative to this file: src/styles → repo root = ../.. */
+@import "tailwindcss" source("../..");
+
+@theme {
+  --font-family-primary: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-family-secondary: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Lenis (https://www.lenis.dev/) — scroll-linked CSS vars set from SmoothScrollContext */
+html {
+  --lenis-progress: 0;
+  --lenis-velocity: 0;
+  --lenis-velocity-signed: 0;
+}
+
+/* Lenis adds this class to html */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.lenis {
+    scroll-behavior: auto;
+  }
+}
+
+/* Subtle global drift: progress + signed velocity (wheel / keys / touch) */
+.lenis-ambient-sheen {
+  pointer-events: none;
+  will-change: transform;
+  transform: translate3d(
+    calc(var(--lenis-velocity-signed, 0) * 0.09px),
+    calc(var(--lenis-progress, 0) * -56px + var(--lenis-velocity-signed, 0) * -0.11px),
+    0
+  );
+}
+
+/* Directional edge pulse — driven by `data-scroll-flash` from SmoothScrollContext */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background: transparent;
+}
+
+@keyframes scroll-flash-down {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -12px, 0) scale(1.01);
+  }
+  22% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes scroll-flash-up {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(1.01);
+  }
+  22% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+html.lenis[data-scroll-flash="down"] body::before {
+  animation: scroll-flash-down 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 58%,
+    color-mix(in srgb, var(--color-accent) 26%, transparent) 100%
+  );
+}
+
+html.lenis[data-scroll-flash="up"] body::before {
+  animation: scroll-flash-up 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  background: linear-gradient(
+    to top,
+    transparent 0%,
+    transparent 58%,
+    color-mix(in srgb, var(--color-accent-secondary) 22%, transparent) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lenis-ambient-sheen {
+    transform: none !important;
+  }
+
+  html[data-scroll-flash] body::before {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+html[data-theme="dark"] {
+  --color-bg-primary: #07080d;
+  --color-bg-secondary: #0e1018;
+  --color-bg-elevated: rgba(20, 24, 35, 0.72);
+  --color-text-primary: #f4f5f7;
+  --color-text-secondary: #a8b0c4;
+  --color-accent: #7c9cff;
+  --color-accent-secondary: #a78bfa;
+  --color-accent-warm: #fbbf77;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-glass: rgba(255, 255, 255, 0.04);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --gradient-hero: radial-gradient(ellipse 120% 80% at 50% -20%, rgba(124, 156, 255, 0.35), transparent 55%),
+    radial-gradient(ellipse 80% 50% at 100% 50%, rgba(167, 139, 250, 0.2), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(251, 191, 119, 0.12), transparent 50%);
+  --shadow-glow: 0 0 80px rgba(124, 156, 255, 0.12);
+
+  /* Button tokens */
+  --btn-primary-text: #ffffff;
+  --btn-primary-shadow: 0 12px 40px rgba(124, 156, 255, 0.28);
+  --btn-secondary-bg: rgba(20, 24, 35, 0.72);
+  --btn-secondary-border: rgba(255, 255, 255, 0.12);
+  --btn-secondary-text: var(--color-text-primary);
+  --btn-secondary-hover-bg: rgba(20, 24, 35, 0.86);
+  --btn-secondary-shadow: 0 14px 44px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme="light"] {
+  --color-bg-primary: #f5f7fc;
+  --color-bg-secondary: #edf1fa;
+  --color-bg-elevated: rgba(255, 255, 255, 0.92);
+  --color-text-primary: #12141c;
+  --color-text-secondary: #344056;
+  --color-accent: #4f6ef7;
+  --color-accent-secondary: #7c3aed;
+  --color-accent-warm: #ea580c;
+  --color-border: rgba(15, 23, 42, 0.12);
+  --color-glass: rgba(255, 255, 255, 0.74);
+  --color-glass-border: rgba(15, 23, 42, 0.12);
+  --gradient-hero: radial-gradient(ellipse 120% 80% at 50% -20%, rgba(79, 110, 247, 0.2), transparent 55%),
+    radial-gradient(ellipse 80% 50% at 100% 40%, rgba(124, 58, 237, 0.12), transparent 50%);
+  --shadow-glow: 0 18px 55px rgba(15, 23, 42, 0.09);
+
+  /* Button tokens */
+  --btn-primary-text: #0f172a;
+  --btn-primary-shadow: 0 12px 36px rgba(15, 23, 42, 0.16);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.96);
+  --btn-secondary-border: rgba(15, 23, 42, 0.16);
+  --btn-secondary-text: #0f172a;
+  --btn-secondary-hover-bg: rgba(255, 255, 255, 1);
+  --btn-secondary-shadow: 0 16px 44px rgba(15, 23, 42, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Lenis drives smooth scrolling */
+}
+
+body {
+  position: relative;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-primary, "Outfit", ui-sans-serif, system-ui, sans-serif);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-primary, "Outfit", ui-sans-serif, system-ui, sans-serif);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+p {
+  font-family: var(--font-family-secondary, "Inter", ui-sans-serif, system-ui, sans-serif);
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(124, 156, 255, 0.35);
+}
+
+.glass-panel {
+  background: var(--color-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: var(--shadow-glow);
+}
+
+.gradient-text {
+  background: linear-gradient(
+    120deg,
+    var(--color-accent) 0%,
+    var(--color-accent-secondary) 45%,
+    var(--color-accent-warm) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Material Symbols sizing helper */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
