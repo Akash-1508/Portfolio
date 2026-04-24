@@ -10,7 +10,7 @@ export default function Footer() {
 
   const social = [
     { label: "GitHub", href: site.socialLinks.github, icon: "code" },
-    { label: "LinkedIn", href: site.socialLinks.linkedin, icon: "work" },
+    // { label: "LinkedIn", href: site.socialLinks.linkedin, icon: "work" },
     { label: "Twitter", href: site.socialLinks.twitter, icon: "chat_bubble" },
   ].filter((s) => s.href);
 

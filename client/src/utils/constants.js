@@ -61,7 +61,7 @@ export const PROJECTS = [
     title: "CRM System Dashboard",
     description:
       "Developed a scalable CRM system with modular UI components, improving performance and maintainability. Implemented features like student management, course management, attendance tracking, and file handling.",
-    image: "https://picsum.photos/seed/crmakash/800/480",
+    image: "/assets/images/focalyt.png",
     tags: ["React.js", "Node.js", "MongoDB", "REST APIs"],
     highlights: [
       "Modular UI architecture",
@@ -70,7 +70,7 @@ export const PROJECTS = [
       "Performance optimization",
     ],
     links: {
-      live: "#projects",
+      live: "https://focalyt.com/",
       code: "https://github.com/Akash-1508",
     },
   },
@@ -78,11 +78,11 @@ export const PROJECTS = [
     title: "Innobotics",
     description:
       "Built a responsive web application with modern UI design and smooth user interactions, focusing on clean layout and performance optimization.",
-    image: "https://picsum.photos/seed/innobotics/800/480",
-    tags: ["React", "Responsive UI", "Performance"],
+    image: "/assets/images/innobotics.png",
+    tags: ["HTML", "Responsive UI", "Performance"],
     highlights: ["Modern UI", "Smooth interactions", "Clean layout"],
     links: {
-      live: "https://github.com/Akash-1508",
+      live: "https://www.innobotics.in/",
       code: "https://github.com/Akash-1508",
     },
   },
@@ -90,20 +90,20 @@ export const PROJECTS = [
     title: "IT Tech",
     description:
       "Designed and developed user-friendly interfaces with reusable components and responsive layouts using React and Tailwind CSS.",
-    image: "https://picsum.photos/seed/ittech/800/480",
+    image: "https://picsum.photos/seed/it-consulting/800/480",
     tags: ["React", "Tailwind CSS", "Components"],
     highlights: ["Reusable components", "Responsive layouts"],
     links: {
-      live: "#projects",
+      live: "https://it-tech-three.vercel.app/",
       code: "https://github.com/Akash-1508",
     },
   },
   {
     title: "Dairy Farm System",
     description:
-      "Created a web-based system for managing dairy-related operations with structured UI and backend integration.",
-    image: "https://picsum.photos/seed/dairyfarm/800/480",
-    tags: ["Web App", "UI", "Backend integration"],
+      "Built a mobile app for dairy farm owners to maintain day-to-day expenses and operational records with a simple, structured workflow.",
+    image: "https://picsum.photos/seed/dairy-farm/800/480",
+    tags: ["React Native", "UI", "Backend integration"],
     highlights: ["Structured UI", "Operations management"],
     links: {
       live: "#projects",

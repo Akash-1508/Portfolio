@@ -77,11 +77,12 @@ export default function About() {
                 className="about-portrait relative aspect-[4/5] overflow-hidden rounded-[28px] border border-[var(--color-glass-border)] bg-[var(--color-glass)] shadow-[0_40px_100px_rgba(0,0,0,0.45)] backdrop-blur-2xl"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/30 via-[var(--color-bg-primary)] to-[var(--color-accent-secondary)]/25" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-primary text-6xl font-bold tracking-tight text-white/90 drop-shadow-lg">
-                    {initials}
-                  </span>
-                </div>
+                <img
+                  src="/assets/images/pic.png"
+                  alt={site.authorName}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
                 <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/10 bg-black/30 p-4 backdrop-blur-md">
                   <p className="font-secondary text-xs font-bold uppercase tracking-[0.2em] text-white/70">
                     Building

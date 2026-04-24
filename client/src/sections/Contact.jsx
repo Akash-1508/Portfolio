@@ -66,7 +66,16 @@ export default function Contact() {
           message: form.message.trim(),
         }),
       });
-      if (!res.ok) throw new Error(`Request failed (${res.status})`);
+      if (!res.ok) {
+        let serverMsg = "";
+        try {
+          const data = await res.json();
+          serverMsg = typeof data?.error === "string" ? data.error : "";
+        } catch {
+          // ignore JSON parse errors
+        }
+        throw new Error(serverMsg || `Request failed (${res.status})`);
+      }
       setStatus("success");
       setForm(initial);
     } catch (err) {
@@ -131,11 +140,11 @@ export default function Contact() {
               <SecondaryButton href={site.socialLinks.github} target="_blank" rel="noopener noreferrer">
                 GitHub
               </SecondaryButton>
-              {site.socialLinks.linkedin ? (
+              {/* {site.socialLinks.linkedin ? (
                 <SecondaryButton href={site.socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
                   LinkedIn
                 </SecondaryButton>
-              ) : null}
+              ) : null} */}
             </div>
           </div>
 

@@ -49,8 +49,10 @@ app.post("/api/contact", async (req, res) => {
     });
 
     return res.json({ ok: true });
-  } catch (_e) {
-    return res.status(500).json({ error: "Email failed" });
+  } catch (e) {
+    console.error("POST /api/contact failed:", e);
+    const isProd = process.env.NODE_ENV === "production";
+    return res.status(500).json({ error: isProd ? "Email failed" : e?.message || "Email failed" });
   }
 });
 
