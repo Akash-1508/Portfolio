@@ -61,7 +61,7 @@ export const PROJECTS = [
     title: "CRM System Dashboard",
     description:
       "Developed a scalable CRM system with modular UI components, improving performance and maintainability. Implemented features like student management, course management, attendance tracking, and file handling.",
-    image: "/assets/images/focalyt.png",
+    image: "/assets/images/focalyt.jpeg",
     tags: ["React.js", "Node.js", "MongoDB", "REST APIs"],
     highlights: [
       "Modular UI architecture",
