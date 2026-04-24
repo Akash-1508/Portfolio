@@ -8,6 +8,9 @@
     "build": "npm run build --prefix client",
     "preview": "npm run preview --prefix client"
   },
+  "dependencies": {
+    "nodemailer": "^7.0.6"
+  },
   "devDependencies": {
     "concurrently": "^9.2.1"
   }
